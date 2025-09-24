@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   alias: {
   'images': fileURLToPath(new URL('./app/assets/images', import.meta.url)),
   'styles': fileURLToPath(new URL('./app/assets/styles', import.meta.url)),
+  'fonts': fileURLToPath(new URL('./app/assets/fonts', import.meta.url)),
   },
 })
 
