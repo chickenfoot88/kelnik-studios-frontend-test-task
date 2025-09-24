@@ -1,0 +1,422 @@
+[
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №100",
+    "square": 55,
+    "flat": 1,
+    "price": 1200000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №101",
+    "square": 56.8,
+    "flat": 2,
+    "price": 1225000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №102",
+    "square": 58.6,
+    "flat": 3,
+    "price": 1250000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №103",
+    "square": 60.4,
+    "flat": 4,
+    "price": 1275000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №104",
+    "square": 62.2,
+    "flat": 5,
+    "price": 1300000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №105",
+    "square": 64,
+    "flat": 6,
+    "price": 1325000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №106",
+    "square": 65.8,
+    "flat": 7,
+    "price": 1350000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №107",
+    "square": 67.6,
+    "flat": 8,
+    "price": 1375000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №108",
+    "square": 69.4,
+    "flat": 9,
+    "price": 1400000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №109",
+    "square": 71.2,
+    "flat": 10,
+    "price": 1425000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №110",
+    "square": 73,
+    "flat": 11,
+    "price": 1450000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №111",
+    "square": 74.8,
+    "flat": 12,
+    "price": 1475000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №112",
+    "square": 76.6,
+    "flat": 13,
+    "price": 1500000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №113",
+    "square": 78.4,
+    "flat": 14,
+    "price": 1525000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №114",
+    "square": 80.2,
+    "flat": 15,
+    "price": 1550000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №115",
+    "square": 82,
+    "flat": 16,
+    "price": 1575000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №116",
+    "square": 83.8,
+    "flat": 17,
+    "price": 1600000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №117",
+    "square": 85.6,
+    "flat": 1,
+    "price": 1625000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №118",
+    "square": 87.4,
+    "flat": 2,
+    "price": 1650000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №119",
+    "square": 89.2,
+    "flat": 3,
+    "price": 1675000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №120",
+    "square": 55,
+    "flat": 4,
+    "price": 1700000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №121",
+    "square": 56.8,
+    "flat": 5,
+    "price": 1725000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №122",
+    "square": 58.6,
+    "flat": 6,
+    "price": 1750000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №123",
+    "square": 60.4,
+    "flat": 7,
+    "price": 1775000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №124",
+    "square": 62.2,
+    "flat": 8,
+    "price": 1800000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №125",
+    "square": 64,
+    "flat": 9,
+    "price": 1825000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №126",
+    "square": 65.8,
+    "flat": 10,
+    "price": 1850000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №127",
+    "square": 67.6,
+    "flat": 11,
+    "price": 1875000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №128",
+    "square": 69.4,
+    "flat": 12,
+    "price": 1900000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №129",
+    "square": 71.2,
+    "flat": 13,
+    "price": 1925000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №130",
+    "square": 73,
+    "flat": 14,
+    "price": 1950000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №131",
+    "square": 74.8,
+    "flat": 15,
+    "price": 1975000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №132",
+    "square": 76.6,
+    "flat": 16,
+    "price": 2000000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №133",
+    "square": 78.4,
+    "flat": 17,
+    "price": 2025000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №134",
+    "square": 80.2,
+    "flat": 1,
+    "price": 2050000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №135",
+    "square": 82,
+    "flat": 2,
+    "price": 2075000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №136",
+    "square": 83.8,
+    "flat": 3,
+    "price": 2100000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №137",
+    "square": 85.6,
+    "flat": 4,
+    "price": 2125000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №138",
+    "square": 87.4,
+    "flat": 5,
+    "price": 2150000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №139",
+    "square": 89.2,
+    "flat": 6,
+    "price": 2175000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №140",
+    "square": 55,
+    "flat": 7,
+    "price": 2200000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №141",
+    "square": 56.8,
+    "flat": 8,
+    "price": 2225000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №142",
+    "square": 58.6,
+    "flat": 9,
+    "price": 2250000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №143",
+    "square": 60.4,
+    "flat": 10,
+    "price": 2275000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №144",
+    "square": 62.2,
+    "flat": 11,
+    "price": 2300000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №145",
+    "square": 64,
+    "flat": 12,
+    "price": 2325000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №146",
+    "square": 65.8,
+    "flat": 13,
+    "price": 2350000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №147",
+    "square": 67.6,
+    "flat": 14,
+    "price": 2375000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №148",
+    "square": 69.4,
+    "flat": 15,
+    "price": 2400000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №149",
+    "square": 71.2,
+    "flat": 16,
+    "price": 2425000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №150",
+    "square": 73,
+    "flat": 17,
+    "price": 2450000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №151",
+    "square": 74.8,
+    "flat": 1,
+    "price": 2475000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №152",
+    "square": 76.6,
+    "flat": 2,
+    "price": 2500000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №153",
+    "square": 78.4,
+    "flat": 3,
+    "price": 2525000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №154",
+    "square": 80.2,
+    "flat": 4,
+    "price": 2550000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №155",
+    "square": 82,
+    "flat": 5,
+    "price": 2575000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №156",
+    "square": 83.8,
+    "flat": 6,
+    "price": 2600000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №157",
+    "square": 85.6,
+    "flat": 7,
+    "price": 2625000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №158",
+    "square": 87.4,
+    "flat": 8,
+    "price": 2650000
+  },
+  {
+    "imgUrl": "images/plan.svg",
+    "name": "3-комнатная №159",
+    "square": 89.2,
+    "flat": 9,
+    "price": 2675000
+  }
+]
