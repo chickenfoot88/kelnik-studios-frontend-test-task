@@ -5,11 +5,23 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint'],
-  css: ['styles/main.sass', 'styles/reset.sass'],
+  css: ['styles/main.sass'],
   alias: {
   'images': fileURLToPath(new URL('./app/assets/images', import.meta.url)),
   'styles': fileURLToPath(new URL('./app/assets/styles', import.meta.url)),
   'fonts': fileURLToPath(new URL('./app/assets/fonts', import.meta.url)),
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          additionalData: [
+            '@use "~/assets/styles/_variables.sass" as *',
+            '@use "~/assets/styles/_utils.sass" as *',
+            '',
+          ].join('\n'),
+        },
+      },
+    },
+  },
 })
-
