@@ -1,7 +1,10 @@
 export interface IApartment {
   imgUrl: string
-  name: string
-  square: number
-  flat: number
+  imgAlt: string
+  title: string
+  area: number
+  level: number
   price: number
 }
+
+export type IApartmentWithFormattedPrice = Omit<IApartment, 'price'> & { price: string }
