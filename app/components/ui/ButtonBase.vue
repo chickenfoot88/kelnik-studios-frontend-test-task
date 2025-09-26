@@ -22,4 +22,11 @@ const emit = defineEmits<{
   background: $color-white
   border-radius: 25px
   border: 1px solid rgba($color-text-primary, 0.2)
+  transition: background $animation-duration ease
+
+  &:hover
+    background: rgba($color-text-primary, 0.05)
+
+  &:active
+    background: rgba($color-text-primary, 0.15)
 </style>
