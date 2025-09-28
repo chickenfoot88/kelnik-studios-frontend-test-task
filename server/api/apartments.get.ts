@@ -1,105 +1,42 @@
-import apartmentsRaw from './mock-data/apartments.json'
-import type { IApartment } from '~/types/apartments.type'
+import { defineEventHandler, getQuery } from 'h3'
+import type { IApartmentsQuery, IApartment } from '~/types/apartments.type'
+import rawApartments from '../mock/apartments.json'
+import { wait } from '~/utils/delay'
 
-const apartments: IApartment[] = (apartmentsRaw as IApartment[]).map(apartment => ({
-  ...apartment,
-  area: parseMetric(apartment.area),
-  price: typeof apartment.price === 'number' ? apartment.price : Number(apartment.price),
-}))
+export default defineEventHandler(async (filterParams) => {
+  // Имитирует задержку ответа от сервера
+  await wait(500)
 
-interface ApartmentsQuery {
-  limit?: number
-  sortBy?: keyof Pick<IApartment, 'price' | 'area' | 'level'>
-  sortOrder?: 'asc' | 'desc'
-  priceMin?: number
-  priceMax?: number
-  areaMin?: number
-  areaMax?: number
-}
+  const {
+    limit,
+    sortBy,
+    sortOrder,
+    priceMin,
+    priceMax,
+    areaMin,
+    areaMax,
+  } = getQuery<IApartmentsQuery>(filterParams)
 
-export default defineEventHandler((event) => {
-  const query = normalizeQuery(getQuery(event))
+  const filtered = rawApartments.filter((apartment: IApartment) => {
+    if (priceMin != null && apartment.price < priceMin) return false
+    if (priceMax != null && apartment.price > priceMax) return false
+    if (areaMin != null && apartment.area < areaMin) return false
+    if (areaMax != null && apartment.area > areaMax) return false
+    return true
+  })
 
-  let filtered = apartments.slice()
+  const direction = sortOrder === 'asc' ? 1 : -1
+  const sorted = filtered.sort((left: IApartment, right: IApartment) => {
+    const leftValue = left[sortBy]
+    const rightValue = right[sortBy]
+    if (leftValue === rightValue) return 0
+    return leftValue > rightValue ? direction : -direction
+  })
 
-  if (query.priceMin !== undefined) {
-    filtered = filtered.filter(apartment => apartment.price >= query.priceMin!)
-  }
-
-  if (query.priceMax !== undefined) {
-    filtered = filtered.filter(apartment => apartment.price <= query.priceMax!)
-  }
-
-  if (query.areaMin !== undefined) {
-    filtered = filtered.filter(apartment => apartment.area >= query.areaMin!)
-  }
-
-  if (query.areaMax !== undefined) {
-    filtered = filtered.filter(apartment => apartment.area <= query.areaMax!)
-  }
-
-  if (query.sortBy) {
-    const direction = query.sortOrder === 'desc' ? -1 : 1
-    const key = query.sortBy
-    filtered = filtered.sort((a, b) => (a[key] - b[key]) * direction)
-  }
-
-  const total = filtered.length
-
-  if (query.limit !== undefined) {
-    filtered = filtered.slice(0, query.limit)
-  }
+  const paginated = sorted.slice(0, limit)
 
   return {
-    total,
-    items: filtered,
+    data: paginated,
+    total: filtered.length,
   }
 })
-
-function normalizeQuery(query: Record<string, any>): ApartmentsQuery {
-  return {
-    limit: toNumber(query.limit),
-    sortBy: toSortKey(query.sortBy),
-    sortOrder: toSortOrder(query.sortOrder),
-    priceMin: toNumber(query.priceMin),
-    priceMax: toNumber(query.priceMax),
-    areaMin: toNumber(query.areaMin),
-    areaMax: toNumber(query.areaMax),
-  }
-}
-
-function toNumber(value: any): number | undefined {
-  if (value === undefined || value === null || value === '') {
-    return undefined
-  }
-  const numberValue = Number(value)
-  return Number.isFinite(numberValue) ? numberValue : undefined
-}
-
-function toSortKey(value: any): ApartmentsQuery['sortBy'] {
-  if (value === 'price' || value === 'area' || value === 'level') {
-    return value
-  }
-  return undefined
-}
-
-function toSortOrder(value: any): ApartmentsQuery['sortOrder'] {
-  if (value === 'asc' || value === 'desc') {
-    return value
-  }
-  return undefined
-}
-
-function parseMetric(value: IApartment['area'] | string): number {
-  if (typeof value === 'number') {
-    return value
-  }
-
-  if (typeof value === 'string') {
-    const sanitized = value.replace(',', '.')
-    const parsed = Number.parseFloat(sanitized)
-    return Number.isFinite(parsed) ? parsed : 0
-  }
-
-  return 0
-}
