@@ -1,0 +1,16 @@
+@use './variables' as *
+
+.fade-up-enter-active,
+.fade-up-leave-active
+  transition: all calc($animation-duration * 2) ease
+
+.fade-up-enter-from,
+.fade-up-leave-to
+  opacity: 0
+  transform: translateY(12px)
+
+@keyframes spinner-rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
