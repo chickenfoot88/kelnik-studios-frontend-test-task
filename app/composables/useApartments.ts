@@ -1,18 +1,9 @@
-import type { IApartment } from '~/types/apartments.type';
+import type { IApartment, IApartmentsQuery } from '~/types/apartments.type'
 
 export function useApartments() {
-  const fetchApartments = async () => {
-
-    const data = await $fetch<IApartment[]>(
-      'mock/apartments.json',
-      {
-        method: 'GET',
-      },
-    )
-   
-    return { data }
-    
+  const fetchApartments = async function(filterParams: IApartmentsQuery): Promise<{ data: IApartment[], total: number }> {
+    const { data, total } = await $fetch<{ data: IApartment[], total: number }>('/api/apartments', { query: filterParams })
+    return { data, total }
   }
-
   return { fetchApartments }
 }
