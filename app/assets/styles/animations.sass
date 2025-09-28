@@ -9,6 +9,14 @@
   opacity: 0
   transform: translateY(12px)
 
+.fade-in-enter-active,
+.fade-in-leave-active
+  transition: opacity calc($animation-duration * 3) ease-in
+
+.fade-in-enter-from,
+.fade-in-leave-to
+  opacity: 0
+
 @keyframes spinner-rotate
   from
     transform: rotate(0deg)
