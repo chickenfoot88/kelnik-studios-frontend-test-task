@@ -2,9 +2,13 @@
   <div class="layout">
     <div class="layout-container">
       <slot />
+      <ScrollToTopButton></ScrollToTopButton>
     </div>
   </div>
 </template>
+<script setup land="ts">
+import ScrollToTopButton from '~/components/ui/ButtonScrollToTop.vue'
+</script>
 
 <style lang="sass" scoped>
 .layout
