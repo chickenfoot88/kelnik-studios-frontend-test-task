@@ -5,7 +5,7 @@ import { wait } from '~/utils/delay'
 
 export default defineEventHandler(async (filterParams) => {
   // Имитирует задержку ответа от сервера
-  await wait(500)
+  await wait(100)
 
   const {
     limit,
