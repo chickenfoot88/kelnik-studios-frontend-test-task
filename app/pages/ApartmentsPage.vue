@@ -2,28 +2,71 @@
   <div class="apartments-page">
     <PageHeader class="apartments-page-header">Квартиры</PageHeader>
     <div class="apartments-page-container">
-      <ApartmentsTable :apartments-list="apartmentListComputed"/>
-      <ApartmentsFilter/>
+      <ApartmentsTable
+        :apartments-list="apartmentsStore.apartmentListComputed"
+        :sort-params="{
+          sortBy: filterParams.sortBy,
+          sortOrder: filterParams.sortOrder
+        }"
+        :is-loading
+        @next-page="nextPage"
+        @next-sort="nextSort"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import apartments from '../../server/api/mock-data/apartments.json'
-import ApartmentsTable from '~/components/ApartmentsTable.vue';
-import type { IApartment, IApartmentWithFormattedPrice } from '~/types/apartments.type'
-import ApartmentsFilter from '~/components/ApartmentsFilter.vue';
+import ApartmentsTable from '~/components/ApartmentsTable.vue'
+import { useApartmentsStore } from '~/stores/apartments.store'
+import { SORT_ORDERS, type IApartmentsQuery, type sortParamsType } from '~/types/apartments.type'
+import { debounce } from '~/utils/debounce'
 
-const apartmentsList = apartments as IApartment[]
-const formatter = new Intl.NumberFormat('ru-RU')
-const apartmentListComputed = computed<IApartmentWithFormattedPrice[]>(() =>
-  apartmentsList.map(apartment => ({
-    ...apartment,
-    price: formatter.format(apartment.price),
-  }),
-))
+const apartmentsStore = useApartmentsStore()
+const initialPageLength = 5
+const filterParams = ref<IApartmentsQuery>({
+  limit: initialPageLength,
+  sortBy: 'area',
+  sortOrder: SORT_ORDERS.ASC,
+  priceMin: 5500000,
+  priceMax: 18900000,
+  areaMin: 33,
+  areaMax: 123,
+})
+const isLoading = ref<boolean>(false)
 
+function nextPage(pageNumber:number) {
+  filterParams.value.limit = initialPageLength * pageNumber
+}
+
+function nextSort(sortParams: sortParamsType) {
+  let sortOrder = sortParams.sortOrder
+  if (sortParams.sortBy !== filterParams.value.sortBy) {
+    sortOrder = SORT_ORDERS.ASC
+  } 
+  filterParams.value.sortOrder = sortOrder
+  filterParams.value.sortBy = sortParams.sortBy
+}
+
+const runFetch = async () => {
+  isLoading.value = true
+  try {
+    await apartmentsStore.getApartments({ ...filterParams.value })
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const debouncedFetch = debounce(runFetch, 500)
+
+watch(
+  () => ({ ...filterParams.value }),
+  () => {
+    isLoading.value = true
+    debouncedFetch()
+  },
+  { immediate: true, deep: true },
+)
 </script>
 
 <style scoped lang="sass">
@@ -47,12 +90,8 @@ const apartmentListComputed = computed<IApartmentWithFormattedPrice[]>(() =>
   height: 400px
   background: $color-success-secondary
 
-// @media (max-width: $bp-lg)
-//   .apartments-page-container
-//     flex-direction: column-reverse
-
-//   .apartments-filter-mock
-//     width: 100%
-//     margin: 0
+@media (max-width: $bp-md)
+  .apartments-page-container
+    gap: $space-6
 
 </style>
