@@ -23,6 +23,12 @@ import ScrollToTopButton from '~/components/ui/ButtonScrollToTop.vue'
   padding: $space-1 $space-2
   min-width: $bp-sm
 
+.scroll-to-top
+  position: fixed
+  right: $space-5
+  bottom: $space-5
+  z-index: 10
+
 @media (max-width: $bp-md)
   .layout-container
     padding: $space-4 $space-3

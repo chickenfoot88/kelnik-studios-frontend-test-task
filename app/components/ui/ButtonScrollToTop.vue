@@ -3,7 +3,6 @@
     <ButtonRound
       v-if="isVisible"
       class="scroll-to-top"
-      variant="success"
       @click="scrollToTop"
     >
       <ArrowUp/>
@@ -57,11 +56,30 @@ onBeforeUnmount(() => {
 
 <style scoped lang="sass">
 .scroll-to-top
-  position: fixed
-  right: $space-5
-  bottom: $space-5
-  z-index: 10
   box-shadow: 0 8px 24px rgba($color-text-primary, 0.15)
+  border: none
+  color: $color-white
+  background: $color-success-secondary
+
+  &:not(:disabled)
+    &:hover
+      background: rgba($color-success-primary, 0.5)
+
+    &:active
+      background: $color-success-primary
+
+    &.loading
+      cursor: default
+      pointer-events: none
+      opacity: 0.6
+          
+      .button-base-text
+        opacity: 0
+
+    &:disabled
+      color: $color-text-secondary
+      cursor: not-allowed
+      opacity: 0.5
 
 @media (max-width: $bp-md)
   .scroll-to-top
