@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['button-base', variantClass, { loading, disabled }]"
+    :class="['button-base', variantClass, { loading }]"
     :disabled="disabled"
     @click="handleClick"
   >
@@ -28,9 +28,7 @@ const isDisabled = computed(() => disabled || loading)
 const variantClass = computed(() => `button-base--${variant}`)
 
 function handleClick () {
-  if (isDisabled.value) {
-    return
-  }
+  if (isDisabled.value) return
   emit('click')
 }
 
