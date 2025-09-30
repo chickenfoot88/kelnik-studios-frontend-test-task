@@ -12,4 +12,5 @@
 <style scoped lang="sass">
 .page-header
   font-size: rem($font-header-size)
+  margin-bottom: $space-4
 </style>
