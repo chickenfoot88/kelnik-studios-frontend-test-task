@@ -22,43 +22,46 @@
           <div class="apartments-table-body__preloader-spinner spinner-lg"></div>
         </div>
         <TransitionGroup v-else name="fade-up" tag="div" class="transition-container">
-          <article v-for="apartment in apartmentsList" :key="`${apartment.title} - ${apartment.level}`" class="apartment-card">
-            <img
-              class="apartment-card-image"
+          <div v-for="apartment in apartmentsList" :key="apartment.id">
+            <article v-if="isDesktop" class="apartments-table-card">
+              <img
+              class="apartments-table-card-image"
               :src="`/images/${apartment.imgUrl}`"
               :alt="apartment.imgAlt"
-            />
-            <h3 class="apartment-card-title">{{ apartment.title }}</h3>
-            <span class="apartment-card-area">{{ apartment.area }}</span>
-            <span class="apartment-card-level">{{ apartment.level }}</span>
-            <span class="apartment-card-price">{{ apartment.price }}</span>
-          </article>
+              />
+              <h3 class="apartments-table-card-title">{{ apartment.title }}</h3>
+              <span class="apartments-table-card-area">{{ apartment.area }}</span>
+              <span class="apartments-table-card-level">
+                {{ apartment.level }}
+                <span class="apartments-table-card-level__max">из 17</span>
+              </span>
+              <span class="apartments-table-card-price">{{ apartment.price }}</span>
+            </article>
+            <ApartmentCard v-else :apartment="apartment"/>
+          </div>
         </TransitionGroup>
       </TransitionGroup>
-      <!-- <ApartmentCard
-        v-for="apartment in apartmentsList"
-        :key="apartment.title"
-        v-bind="apartment"
-        /> -->
-      </div>
-      <div class="apartments-table-footer">
-        <ButtonBase
-          v-if="isSPaginationButtonShown"
-          :loading="isLoading"
-          @click="nextPage"
-        >
-          Загрузить еще
-        </ButtonBase>
-      </div>
+    </div>
+    <div class="apartments-table-footer">
+      <ButtonBase
+        v-if="isSPaginationButtonShown"
+        :loading="isLoading"
+        @click="nextPage"
+      >
+        Загрузить еще
+      </ButtonBase>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import type { IApartmentWithFormatted, sortParamsType } from '~/types/apartments.type'
+import type { IApartmentFormatted, sortParamsType } from '~/types/apartments.type'
 import ButtonBase from '~/components/ui/ButtonBase.vue'
 import ButtonSort from '~/components/ui/ButtonSort.vue'
+import ApartmentCard from '~/components/ApartmentCard.vue'
+import { useWindowSize } from '@vueuse/core'
+
 const apartmentsStore = useApartmentsStore()
-// import ApartmentCard from '~/components/ApartmentC   ard.vue'
 
 const SORT_BUTTONS: { field: sortParamsType['sortBy'], label: string, sup?: number }[] = [
   { field: 'area', label: 'S, м', sup: 2 },
@@ -67,7 +70,7 @@ const SORT_BUTTONS: { field: sortParamsType['sortBy'], label: string, sup?: numb
 ]
 
 const { apartmentsList, isLoading, sortParams } = defineProps<{
-  apartmentsList: IApartmentWithFormatted[],
+  apartmentsList: IApartmentFormatted[],
   isLoading: boolean,
   sortParams: sortParamsType
 }>()
@@ -91,21 +94,25 @@ const isSPaginationButtonShown = computed<boolean>(() => {
 const isPreloaderShown = computed<boolean>(() => {
   return !apartmentsList.length && isLoading
 })
+
+const { width } = useWindowSize()
+const isDesktop = computed(() => width.value >= 960)
 </script>
 
 <style scoped lang="sass">
 .apartments-table
   width: 100%
+  .apartment-card
+    margin-bottom: 8px
 
 .apartments-table-header,
-.apartment-card
+.apartments-table-card
   display: grid
   grid-template-columns: 100px minmax(160px, 1fr) repeat(3, minmax(110px, auto))
   gap: $space-6
 
 .apartments-table-header
   padding-bottom: $space-6
-  box-shadow: 0 1px 0 0 rgba($color-black, 0.1)
 
 .apartments-table-label
   font-size: rem(16px)
@@ -124,7 +131,6 @@ const isPreloaderShown = computed<boolean>(() => {
     opacity: 0
     visibility: hidden
     z-index: 1
-    pointer-events: none
     transition: opacity calc($animation-duration * 1.5) linear
 
   &.loading
@@ -134,44 +140,49 @@ const isPreloaderShown = computed<boolean>(() => {
 
   &__preloader
     top: 0
-    height: 400px
+    min-height: 200px
     display: flex
     align-items: center
     justify-content: center
     position: absolute
     width: 100%
 
-.transition-container
-  position: relative
-
-.apartments-table-footer
-  padding-top: $space-4
-
-.apartment-card
+.apartments-table-card
   padding: $space-7 0 $space-5 0
   line-height: rem(24px)
-  box-shadow: 0 1px 0 0 rgba($color-black, 0.1)
+  border-top: 1px solid rgba($color-black, 0.1)
+  transition: background-color $animation-duration ease-out, box-shadow $animation-duration ease
+  cursor: pointer
+
+  &:hover
+    background: rgba($color-black, 0.025)
+    box-shadow: 0 3px 9px rgba($color-black, 0.1)
+  &:active
+    box-shadow: 0 1px 5px rgba($color-black, 0.1)
 
   &-title
     font-weight: 500
     font-size: rem(16px)
 
+  &-level__max
+    color: rgba($color-text-primary, 0.5)
+
+.apartments-table-footer
+  padding-top: $space-4
+
+.transition-container
+  position: relative
+  & > div:last-child
+    .apartments-table-card
+      border-bottom: 1px solid rgba($color-black, 0.1)
+
+
 @media (max-width: $bp-md)
   .apartments-table-header
-    // grid-template-columns: repeat(3, minmax(min-content, max-content))
-    // gap: $space-5
+    display: flex
+
   .apartments-table-header__image,
   .apartments-table-header__title
     display: none
 
-  // .apartment-card
-  //   grid-template-columns: repeat(4, 1fr)
-  //   grid-template-rows: 50% 50%
-  //   &-title
-  //     grid-column: 1 / 3
-  //     grid-row: 1 / 1
-  //   &-area, &-price, &-level
-  //     grid-row: 2 / 2
-  //   &-image
-  //     grid-column: 4 / 4
 </style>
