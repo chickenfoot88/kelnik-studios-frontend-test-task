@@ -18,10 +18,10 @@ import ScrollToTopButton from '~/components/ui/ButtonScrollToTop.vue'
 
 .layout-container
   width: 100%
-  max-width: 1440px
+  max-width: $bp-lg
   margin: 0 auto
   padding: $space-1 $space-2
-  min-width: 960px
+  min-width: $bp-sm
 
 @media (max-width: $bp-md)
   .layout-container
