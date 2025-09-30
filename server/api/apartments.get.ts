@@ -1,5 +1,6 @@
 import { defineEventHandler, getQuery } from 'h3'
-import type { IApartmentsQuery, IApartment } from '~/types/apartments.type'
+import type { IApartment } from '~/types/apartments.type'
+import type { IApartmentsQuery } from '~/types/apartments-query.types'
 import rawApartments from '../mock/apartments.json'
 import { wait } from '~/utils/delay'
 

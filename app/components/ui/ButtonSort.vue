@@ -21,8 +21,8 @@
 
 <script setup lang="ts">
 import CaretUp from '~/assets/images/icons/CaretUp.vue'
-import type { sortParamsType, sortByType } from '~/types/apartments.type'
-import { SORT_ORDERS } from '~/types/apartments.type'
+import type { ISortParamsType } from '~/types/apartment-sort.types'
+import { SORT_ORDER } from '~/types/apartment-sort.types'
 
 const {
   sortParams,
@@ -30,15 +30,15 @@ const {
   disabled = false,
   loading = false,
 } = defineProps<{
-  sortParams: sortParamsType,
-  field: sortByType,
+  sortParams: ISortParamsType,
+  field: ISortParamsType['sortBy'],
   disabled?: boolean,
   loading?: boolean
 }>()
 
 // const sortOrder = ref<sortParamsType['sortOrder']>(sortParams.sortOrder)
 
-const emit = defineEmits<{(event: 'nextSort', value: sortParamsType): void}>()
+const emit = defineEmits<{(event: 'nextSort', value: ISortParamsType): void}>()
 
 const buttonClasses = computed(() => ({
   'button-sort-active': field === sortParams.sortBy,
@@ -50,7 +50,7 @@ const isDisabled = computed(() => disabled || loading)
 
 function handleClick() {
   if (isDisabled.value) return
-  const nextSortOrder = sortParams.sortOrder === SORT_ORDERS.ASC ? SORT_ORDERS.DESC : SORT_ORDERS.ASC
+  const nextSortOrder = sortParams.sortOrder === SORT_ORDER.ASC ? SORT_ORDER.DESC : SORT_ORDER.ASC
   emit('nextSort', { sortOrder: nextSortOrder, sortBy: field })
 }
 

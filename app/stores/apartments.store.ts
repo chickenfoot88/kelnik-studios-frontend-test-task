@@ -1,6 +1,7 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
-import type { IApartment, IApartmentFormatted, IApartmentsQuery } from '~/types/apartments.type'
+import type { IApartment, IApartmentFormatted } from '~/types/apartments.type'
+import type { IApartmentsQuery } from '~/types/apartments-query.types' 
 import { formatter } from '~/utils/formatter'
 
 export const useApartmentsStore = defineStore('apartments', () => {

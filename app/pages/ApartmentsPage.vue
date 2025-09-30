@@ -19,7 +19,9 @@
 <script setup lang="ts">
 import ApartmentsTable from '~/components/ApartmentsTable.vue'
 import { useApartmentsStore } from '~/stores/apartments.store'
-import { SORT_ORDERS, type IApartmentsQuery, type sortParamsType } from '~/types/apartments.type'
+import type { IApartmentsQuery } from '~/types/apartments-query.types'
+import type { ISortParamsType } from '~/types/apartment-sort.types'
+import { SORT_ORDER } from '~/types/apartment-sort.types'
 import { debounce } from '~/utils/debounce'
 
 const apartmentsStore = useApartmentsStore()
@@ -27,7 +29,7 @@ const initialPageLength = 5
 const filterParams = ref<IApartmentsQuery>({
   limit: initialPageLength,
   sortBy: 'area',
-  sortOrder: SORT_ORDERS.ASC,
+  sortOrder: SORT_ORDER.ASC,
   priceMin: 5500000,
   priceMax: 18900000,
   areaMin: 33,
@@ -39,10 +41,10 @@ function nextPage(pageNumber:number) {
   filterParams.value.limit = initialPageLength * pageNumber
 }
 
-function nextSort(sortParams: sortParamsType) {
+function nextSort(sortParams: ISortParamsType) {
   let sortOrder = sortParams.sortOrder
   if (sortParams.sortBy !== filterParams.value.sortBy) {
-    sortOrder = SORT_ORDERS.ASC
+    sortOrder = SORT_ORDER.ASC
   } 
   filterParams.value.sortOrder = sortOrder
   filterParams.value.sortBy = sortParams.sortBy

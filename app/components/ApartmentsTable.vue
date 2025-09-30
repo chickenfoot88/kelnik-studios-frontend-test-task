@@ -55,7 +55,8 @@
 </template>
 
 <script setup lang="ts">
-import type { IApartmentFormatted, sortParamsType } from '~/types/apartments.type'
+import type { IApartmentFormatted } from '~/types/apartments.type'
+import type { ISortParamsType } from '~/types/apartment-sort.types'
 import ButtonBase from '~/components/ui/ButtonBase.vue'
 import ButtonSort from '~/components/ui/ButtonSort.vue'
 import ApartmentCard from '~/components/ApartmentCard.vue'
@@ -63,7 +64,7 @@ import { useWindowSize } from '@vueuse/core'
 
 const apartmentsStore = useApartmentsStore()
 
-const SORT_BUTTONS: { field: sortParamsType['sortBy'], label: string, sup?: number }[] = [
+const SORT_BUTTONS: { field: ISortParamsType['sortBy'], label: string, sup?: number }[] = [
   { field: 'area', label: 'S, м', sup: 2 },
   { field: 'level', label: 'Этаж' },
   { field: 'price', label: 'Цена, \u20BD' },
@@ -72,12 +73,12 @@ const SORT_BUTTONS: { field: sortParamsType['sortBy'], label: string, sup?: numb
 const { apartmentsList, isLoading, sortParams } = defineProps<{
   apartmentsList: IApartmentFormatted[],
   isLoading: boolean,
-  sortParams: sortParamsType
+  sortParams: ISortParamsType
 }>()
 
 const emit = defineEmits<{
   nextPage: [pageNumber: number]
-  nextSort: [sortParams: sortParamsType]
+  nextSort: [sortParams: ISortParamsType]
 }>()
 
 const pageNumber = ref<number>(1)
