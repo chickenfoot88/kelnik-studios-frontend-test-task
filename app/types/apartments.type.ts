@@ -5,26 +5,28 @@ interface IApartment {
   area: number
   level: number
   price: number
+  id: number
 }
 
-type sortOrder = 'asc' | 'desc'
-type sortOrderExtended = sortOrder | undefined
-type sortBy = keyof Pick<IApartment, 'price' | 'area' | 'level'>
-interface sortParams {
-  sortOrder: sortOrderExtended
-  sortBy: sortBy
+type IApartmentFormatted = Omit<IApartment, 'price' | 'area'> & {
+  price: string
+  area: string
 }
 
-type IApartmentWithFormatted = Omit<IApartment, 'price'> & { price: string }
+const SORT_ORDERS = { ASC: 'asc', DESC: 'desc'} as const
+type sortByType = keyof Pick<IApartment, 'price' | 'area' | 'level'>
+type sortOrderType = typeof SORT_ORDERS[keyof typeof SORT_ORDERS]
+interface sortParamsType { sortOrder: sortOrderType, sortBy: sortByType }
 
 interface IApartmentsQuery {
   limit: number
-  sortBy: sortBy
-  sortOrder: sortOrder
+  sortBy: sortByType
+  sortOrder: sortOrderType
   priceMin: number
   priceMax: number
   areaMin: number
   areaMax: number
 }
 
-export type { IApartment, IApartmentWithFormatted, IApartmentsQuery, sortOrderExtended, sortBy, sortParams }
+export type { IApartment, IApartmentFormatted, IApartmentsQuery, sortOrderType, sortByType, sortParamsType }
+export { SORT_ORDERS }
