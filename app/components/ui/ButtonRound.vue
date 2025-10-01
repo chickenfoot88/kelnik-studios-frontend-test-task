@@ -1,11 +1,11 @@
 <template>
-  <button class="button-round" :style>
+  <button class="button-round" :style :disabled="disabled">
     <slot/>
   </button>
 </template>
 
 <script setup lang="ts">
-const { size = 40 } = defineProps<{ size?: number }>()
+const { size = 40, disabled = false } = defineProps<{ size?: number, disabled?: boolean }>()
 
 const style = computed(() => ({
   width: `${size}px`,
