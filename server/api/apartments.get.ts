@@ -16,6 +16,7 @@ export default defineEventHandler(async (filterParams) => {
     priceMax,
     areaMin,
     areaMax,
+    rooms,
   } = getQuery<IApartmentsQuery>(filterParams)
 
   const filtered = rawApartments.filter((apartment: IApartment) => {
@@ -23,6 +24,7 @@ export default defineEventHandler(async (filterParams) => {
     if (priceMax != null && apartment.price > priceMax) return false
     if (areaMin != null && apartment.area < areaMin) return false
     if (areaMax != null && apartment.area > areaMax) return false
+    if (rooms != null && rooms != apartment.rooms) return false
     return true
   })
 

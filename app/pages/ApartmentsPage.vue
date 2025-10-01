@@ -4,25 +4,25 @@
     <div class="apartments-page-container">
       <ApartmentsTable
         :apartments-list="apartmentsStore.apartmentListComputed"
-        :sort-params="{
-          sortBy: filterParams.sortBy,
-          sortOrder: filterParams.sortOrder
-        }"
+        :sort-params="sortParams"
         :is-loading
         @next-page="nextPage"
         @next-sort="nextSort"
       />
+      <ApartmentsFilter v-model="filterParams" :is-loading="isLoading"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ApartmentsTable from '~/components/ApartmentsTable.vue'
+import ApartmentsFilter from '~/components/ApartmentsFilter.vue'
 import { useApartmentsStore } from '~/stores/apartments.store'
 import type { IApartmentsQuery } from '~/types/apartments-query.types'
 import type { ISortParamsType } from '~/types/apartment-sort.types'
 import { SORT_ORDER } from '~/types/apartment-sort.types'
 import { debounce } from '~/utils/debounce'
+
 
 const apartmentsStore = useApartmentsStore()
 const initialPageLength = 5
@@ -34,7 +34,14 @@ const filterParams = ref<IApartmentsQuery>({
   priceMax: 18900000,
   areaMin: 33,
   areaMax: 123,
+  rooms: 1,
 })
+
+const sortParams = computed(() => ({
+  sortBy: filterParams.value.sortBy,
+  sortOrder: filterParams.value.sortOrder,
+}))
+
 const isLoading = ref<boolean>(false)
 
 function nextPage(pageNumber:number) {
@@ -51,7 +58,6 @@ function nextSort(sortParams: ISortParamsType) {
 }
 
 const runFetch = async () => {
-  isLoading.value = true
   try {
     await apartmentsStore.getApartments({ ...filterParams.value })
   } finally {
