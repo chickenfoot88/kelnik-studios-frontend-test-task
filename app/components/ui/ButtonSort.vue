@@ -36,8 +36,6 @@ const {
   loading?: boolean
 }>()
 
-// const sortOrder = ref<sortParamsType['sortOrder']>(sortParams.sortOrder)
-
 const emit = defineEmits<{(event: 'nextSort', value: ISortParamsType): void}>()
 
 const buttonClasses = computed(() => ({
