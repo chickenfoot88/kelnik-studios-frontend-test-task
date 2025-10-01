@@ -5,7 +5,8 @@ interface IApartment {
   area: number
   level: number
   price: number
-  id: number
+  id: number,
+  rooms: number
 }
 
 type IApartmentFormatted = Omit<IApartment, 'price' | 'area'> & {
