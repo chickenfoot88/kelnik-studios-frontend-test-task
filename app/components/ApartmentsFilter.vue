@@ -13,6 +13,9 @@
         <span>{{  rooms  }}к</span>
       </ButtonRoundFilter>
     </div>
+    <div class="apartments-filter-reset">
+      <button @click="emit('resetFilter')">Сбросить параметры</button>
+    </div>
   </div>
 </template>
 
@@ -24,7 +27,8 @@ const APARTMENTS_ROOMS_OPTIONS = [1, 2, 3, 4]
 const { modelValue, isLoading = false } = defineProps<{ modelValue: IApartmentsQuery, isLoading?: boolean }>()
 
 const emit = defineEmits<{
-  'update:modelValue': [value: IApartmentsQuery]
+  'update:modelValue': [value: IApartmentsQuery],
+  'resetFilter': []
 }>()
 
 function updateRooms(rooms: number) {

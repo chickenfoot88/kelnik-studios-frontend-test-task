@@ -9,7 +9,7 @@
         @next-page="nextPage"
         @next-sort="nextSort"
       />
-      <ApartmentsFilter v-model="filterParams" :is-loading="isLoading"/>
+      <ApartmentsFilter v-model="filterParams" :is-loading @reset-filter="resetFilter"/>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ import { debounce } from '~/utils/debounce'
 
 const apartmentsStore = useApartmentsStore()
 const initialPageLength = 5
-const filterParams = ref<IApartmentsQuery>({
+const filterParamsInitial:IApartmentsQuery = {
   limit: initialPageLength,
   sortBy: 'area',
   sortOrder: SORT_ORDER.ASC,
@@ -34,8 +34,10 @@ const filterParams = ref<IApartmentsQuery>({
   priceMax: 18900000,
   areaMin: 33,
   areaMax: 123,
-  rooms: 1,
-})
+  rooms: null,
+}
+
+const filterParams = ref<IApartmentsQuery>(filterParamsInitial)
 
 const sortParams = computed(() => ({
   sortBy: filterParams.value.sortBy,
@@ -66,6 +68,10 @@ const runFetch = async () => {
 }
 
 const debouncedFetch = debounce(runFetch, 500)
+
+function resetFilter() {
+  filterParams.value = filterParamsInitial
+}
 
 watch(
   () => ({ ...filterParams.value }),
