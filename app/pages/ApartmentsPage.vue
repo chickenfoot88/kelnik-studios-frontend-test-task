@@ -40,7 +40,7 @@ const apartmentsStore = useApartmentsStore()
 const initialPageLength = 5
 const filterParamsInitial:IApartmentsQuery = {
   limit: initialPageLength,
-  sortBy: '',
+  sortBy: 'area',
   sortOrder: SORT_ORDER.ASC,
   priceMin: PRICE_RANGE.MIN,
   priceMax: PRICE_RANGE.MAX,
