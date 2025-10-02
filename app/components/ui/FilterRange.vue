@@ -1,0 +1,128 @@
+<template>
+  <div class="filter-range">
+    <label class="filter-range-label">
+      <span class="filter-range-label__header">
+        <slot/>
+      </span>
+      <div class="filter-range-label__description">
+        <div>
+          <span>от </span>
+          <span class="filter-range-label__value">{{  formattedPriceRange.min }}</span>
+        </div>
+        <div>
+          <span> до </span>
+          <span class="filter-range-label__value">{{  formattedPriceRange.max }}</span>
+        </div>
+      </div>
+    </label>
+    <Slider
+      v-model="localRange"
+      :min="min"
+      :max="max"
+      :step="step"
+      class="filter-range-slider"
+      :tooltips="false"
+      :disabled
+      @slide="handleSlide"
+      @change="handleChange"
+
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { formatter } from '~/utils/formatter'
+import Slider from '@vueform/slider'
+import '@vueform/slider/themes/default.css'
+
+const { min, max, step, modelValue, disabled = false } = defineProps<{
+  modelValue: [number, number]
+  min: number
+  max: number
+  step: number
+  disabled?: boolean,
+}>()
+
+const localRange = ref<[number, number]>([...modelValue])
+const isSliding = ref(false)
+
+const formattedPriceRange = computed(() => ({
+  min: formatter.format(localRange.value[0]),
+  max: formatter.format(localRange.value[1]),
+}))
+
+const emit = defineEmits<{
+  'update:modelValue': [[number, number]]
+}>()
+
+function handleSlide(value: [number, number]) {
+  isSliding.value = true
+  localRange.value = value
+}
+
+function handleChange(value: [number, number]) {
+  isSliding.value = false
+  localRange.value = value
+  emit('update:modelValue', localRange.value)
+}
+
+watch(
+  () => modelValue,
+  (value) => {
+    if (!isSliding.value) {
+      localRange.value = [...value]
+    }
+  },
+  { deep: true },
+)
+</script>
+
+<style scoped lang="sass">
+.filter-range
+  display: grid
+  gap: 12px
+
+.filter-range
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &-header
+    display: flex
+    justify-content: space-between
+    font-size: 14px
+
+  &-label
+    display: flex
+    flex-wrap: wrap
+    gap: 8px
+    margin-bottom: 8px
+
+  &-label__header
+    font-size: rem(14px)
+    line-height: rem(20px)
+
+  &-label__description
+    color: rgba($color-text-primary, 0.5)
+    display: flex
+    justify-content: space-between
+    width: 100%
+    > div
+      flex: 1
+
+  &-label__value
+    color: $color-text-primary
+    font-weight: 500
+
+.filter-range-slider
+  --slider-height: 3px
+  --slider-handle-width: 14px
+  --slider-handle-height: 14px
+  --slider-handle-shadow: none
+  --slider-handle-shadow-active: none
+  --slider-bg: var(--color-text-primary)
+  // --slider-bg: rgba(var(--color-text-primary), 0.1)
+  --slider-handle-bg: rgb(var(--color-success-primary))
+  --slider-connect-bg: rgb(var(--color-success-primary))
+  --slider-connect-bg-disabled: rgb(var(--color-success-primary))
+</style>
