@@ -36,16 +36,4 @@ const { active = false, disabled = false } = defineProps<{ active?: boolean, dis
     .button-base-text
       opacity: 0
 
-@media (max-width: $bp-md)
-  .scroll-to-top
-    right: $space-6
-    bottom: $space-6
-
-.scroll-to-top-fade-enter-active,
-.scroll-to-top-fade-leave-active
-  transition: opacity $animation-duration ease
-
-.scroll-to-top-fade-enter-from,
-.scroll-to-top-fade-leave-to
-  opacity: 0
 </style>

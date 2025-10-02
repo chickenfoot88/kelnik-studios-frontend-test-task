@@ -101,7 +101,7 @@ const isPreloaderShown = computed<boolean>(() => {
 })
 
 const { width } = useWindowSize()
-const isDesktop = computed(() => width.value >= 960)
+const isDesktop = computed(() => width.value > 1440)
 </script>
 
 <style scoped lang="sass">
@@ -113,7 +113,7 @@ const isDesktop = computed(() => width.value >= 960)
 .apartments-table-header,
 .apartments-table-card
   display: grid
-  grid-template-columns: 100px minmax(160px, 1fr) repeat(3, minmax(110px, auto))
+  grid-template-columns: 100px minmax(150px, 1fr) repeat(3, minmax(70px, 150px))
   gap: $space-6
 
 .apartments-table-header
@@ -190,7 +190,7 @@ const isDesktop = computed(() => width.value >= 960)
   flex-wrap: wrap
   flex-direction: column
 
-@media (max-width: $bp-md)
+@media (max-width: $bp-lg)
   .apartments-table-header
     display: flex
 

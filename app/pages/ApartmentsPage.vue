@@ -1,9 +1,9 @@
 <template>
   <main class="apartments-page" aria-labelledby="apartments-page-header">
-    <header>
-      <PageHeader id="apartments-page-header" class="apartments-page-header">Квартиры</PageHeader>
-    </header>
     <section class="apartments-page-container" aria-label="Список и фильтр квартир">
+      <header>
+        <PageHeader id="apartments-page-header" class="apartments-page-header">Квартиры</PageHeader>
+      </header>
       <ApartmentsTable
         :apartments-list="apartmentsStore.apartmentListComputed"
         :sort-params="sortParams"
@@ -11,14 +11,14 @@
         @next-page="nextPage"
         @next-sort="nextSort"
       />
-      <aside class="apartments-page-filter-container">
-        <ClientOnly>
-          <Transition name="fade-in">
-            <ApartmentsFilter v-model="filterParams" :is-loading aria-label="Фильтр квартир" @reset-filter="resetFilter"/>
-          </Transition>
-        </ClientOnly>
-      </aside>
     </section>
+    <aside class="apartments-page-filter-container">
+      <ClientOnly>
+        <Transition name="fade-in">
+          <ApartmentsFilter v-model="filterParams" :is-loading aria-label="Фильтр квартир" @reset-filter="resetFilter"/>
+        </Transition>
+      </ClientOnly>
+    </aside>
   </main>
 </template>
 
@@ -116,28 +116,19 @@ watch(
 <style scoped lang="sass">
 .apartments-page
   display: flex
-  flex-direction: column
+  gap: $space-2
 
 .apartments-page-container
   display: flex
+  flex-direction: column
   width: 100%
-  gap: $space-2
-
 .apartments-page-filter-container
-  width: 400px
-  margin-left: auto
-
-.apartments-filter
-  margin-top: calc(-1* (72px + $space-4))
+  min-width: 320px
 
 main
   width: 100%
 
-aside
-  padding: 0 40px
-
-@media (max-width: $bp-md)
-  .apartments-page-container
+@media (max-width: $bp-lg)
+  .apartments-page
     gap: $space-6
-
 </style>

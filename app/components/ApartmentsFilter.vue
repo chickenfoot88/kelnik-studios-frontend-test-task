@@ -73,6 +73,8 @@ const activeRoom = computed<IApartmentsQuery['rooms']>(() => modelValue.rooms)
   flex-direction: column
   gap: $space-5
   width: 100%
+  min-width: 320px
+  padding: 40px
 
 .apartments-filter-rooms
   display: flex
@@ -82,4 +84,12 @@ const activeRoom = computed<IApartmentsQuery['rooms']>(() => modelValue.rooms)
   display: flex
   flex-direction: column
   gap: $space-5
+
+
+@media (max-width: $bp-lg)
+  .apartments-filter
+    background: linear-gradient(45deg, rgba(#AEE4B2, 0.3) 0%, rgba($color-success-secondary, 0.3) 100%)
+    padding: $space-6
+    border-radius: 10px
+
 </style>

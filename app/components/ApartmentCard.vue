@@ -47,6 +47,7 @@ function handleClick(id: number) {
   font-weight: 500
   font-size: rem(14px)
   line-height: rem(20px)
+  min-width: 330px
 
   &:hover
     box-shadow: 0 4px 4px rgba($color-black, 25%)
