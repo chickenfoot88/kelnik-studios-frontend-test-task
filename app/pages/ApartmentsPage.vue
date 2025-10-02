@@ -45,7 +45,7 @@ const sortParams = computed(() => ({
   sortOrder: filterParams.value.sortOrder,
 }))
 
-const isLoading = ref<boolean>(false)
+const isLoading = ref<boolean>(true)
 
 function nextPage(pageNumber:number) {
   filterParams.value.limit = initialPageLength * pageNumber

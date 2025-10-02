@@ -22,6 +22,10 @@
           <div class="apartments-table-body__preloader-spinner spinner-lg"></div>
         </div>
         <TransitionGroup v-else name="fade-up" tag="div" class="transition-container">
+          <div v-if="!apartmentsList.length && !isLoading" class="apartments-table-no-result">
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте изменить параметры фильтра.</p>
+          </div>
           <div v-for="apartment in apartmentsList" :key="apartment.id">
             <article v-if="isDesktop" class="apartments-table-card">
               <img
@@ -73,7 +77,7 @@ const SORT_BUTTONS: { field: ISortParamsType['sortBy'], label: string, sup?: num
 const { apartmentsList, isLoading, sortParams } = defineProps<{
   apartmentsList: IApartmentFormatted[],
   isLoading: boolean,
-  sortParams: ISortParamsType
+  sortParams: ISortParamsType,
 }>()
 
 const emit = defineEmits<{
@@ -177,6 +181,14 @@ const isDesktop = computed(() => width.value >= 960)
     .apartments-table-card
       border-bottom: 1px solid rgba($color-black, 0.1)
 
+.apartments-table-no-result
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  min-height: 300px
+  flex-wrap: wrap
+  flex-direction: column
 
 @media (max-width: $bp-md)
   .apartments-table-header
