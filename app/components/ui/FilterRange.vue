@@ -25,15 +25,12 @@
       :disabled
       @slide="handleSlide"
       @change="handleChange"
-
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { formatter } from '~/utils/formatter'
-import Slider from '@vueform/slider'
-import '@vueform/slider/themes/default.css'
 
 const { min, max, step, modelValue, disabled = false } = defineProps<{
   modelValue: [number, number]
@@ -120,8 +117,7 @@ watch(
   --slider-handle-height: 14px
   --slider-handle-shadow: none
   --slider-handle-shadow-active: none
-  --slider-bg: var(--color-text-primary)
-  // --slider-bg: rgba(var(--color-text-primary), 0.1)
+  --slider-bg: rgba(var(--color-text-primary), 0.1)
   --slider-handle-bg: rgb(var(--color-success-primary))
   --slider-connect-bg: rgb(var(--color-success-primary))
   --slider-connect-bg-disabled: rgb(var(--color-success-primary))
