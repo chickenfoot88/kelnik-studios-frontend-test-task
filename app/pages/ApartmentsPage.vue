@@ -20,6 +20,7 @@ import ApartmentsFilter from '~/components/ApartmentsFilter.vue'
 import { useApartmentsStore } from '~/stores/apartments.store'
 import type { IApartmentsQuery } from '~/types/apartments-query.types'
 import type { ISortParamsType } from '~/types/apartment-sort.types'
+import { PRICE_RANGE, AREA_RANGE } from '~/types/apartments-filter.types'
 import { SORT_ORDER } from '~/types/apartment-sort.types'
 import { debounce } from '~/utils/debounce'
 
@@ -30,10 +31,10 @@ const filterParamsInitial:IApartmentsQuery = {
   limit: initialPageLength,
   sortBy: 'area',
   sortOrder: SORT_ORDER.ASC,
-  priceMin: 5500000,
-  priceMax: 18900000,
-  areaMin: 33,
-  areaMax: 123,
+  priceMin: PRICE_RANGE.MIN,
+  priceMax: PRICE_RANGE.MAX,
+  areaMin: AREA_RANGE.MIN,
+  areaMax: AREA_RANGE.MAX,
   rooms: null,
 }
 
@@ -70,8 +71,12 @@ const runFetch = async () => {
 const debouncedFetch = debounce(runFetch, 500)
 
 function resetFilter() {
-  filterParams.value = filterParamsInitial
+  filterParams.value = { ...filterParamsInitial }
 }
+
+onMounted(() => {
+  runFetch()
+})
 
 watch(
   () => ({ ...filterParams.value }),
@@ -79,7 +84,7 @@ watch(
     isLoading.value = true
     debouncedFetch()
   },
-  { immediate: true, deep: true },
+  { deep: true },
 )
 </script>
 
