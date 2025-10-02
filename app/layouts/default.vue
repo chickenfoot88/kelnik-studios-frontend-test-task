@@ -2,7 +2,7 @@
   <div class="layout">
     <div class="layout-container">
       <slot />
-      <ScrollToTopButton></ScrollToTopButton>
+      <ScrollToTopButton aria-label="Кнопка наверх"></ScrollToTopButton>
     </div>
   </div>
 </template>

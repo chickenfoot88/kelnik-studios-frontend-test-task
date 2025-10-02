@@ -27,7 +27,7 @@
             <p>Попробуйте изменить параметры фильтра.</p>
           </div>
           <div v-for="apartment in apartmentsList" :key="apartment.id">
-            <article v-if="isDesktop" class="apartments-table-card">
+            <button v-if="isDesktop" class="apartments-table-card" tabindex="0" type="button">
               <img
               class="apartments-table-card-image"
               :src="`/images/${apartment.imgUrl}`"
@@ -40,8 +40,8 @@
                 <span class="apartments-table-card-level__max">из 17</span>
               </span>
               <span class="apartments-table-card-price">{{ apartment.price }}</span>
-            </article>
-            <ApartmentCard v-else :apartment="apartment"/>
+            </button>
+            <ApartmentCard v-else :apartment="apartment" tabindex="0" aria-label="Открыть карточку квартиры"/>
           </div>
         </TransitionGroup>
       </TransitionGroup>
@@ -155,9 +155,12 @@ const isDesktop = computed(() => width.value > 1440)
 .apartments-table-card
   padding: $space-7 0 $space-5 0
   line-height: rem(24px)
+  background: none
+  border: none
   border-top: 1px solid rgba($color-black, 0.1)
   transition: background-color $animation-duration ease-out, box-shadow $animation-duration ease
   cursor: pointer
+  width: 100%
 
   &:hover
     background: rgba($color-black, 0.025)

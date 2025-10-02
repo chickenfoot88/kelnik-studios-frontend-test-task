@@ -14,7 +14,7 @@
       </ButtonRoundFilter>
     </div>
     <div class="apartments-filter-slider">
-      <FilterRange v-model="priceRange" :min="PRICE_RANGE.MIN" :max="PRICE_RANGE.MAX" :step="10000" :disabled="isLoading">
+      <FilterRange v-model="priceRange" :min="PRICE_RANGE.MIN" :max="PRICE_RANGE.MAX" :step="500000" :disabled="isLoading">
         Стоимость квартиры, &#x20BD;
       </FilterRange>
       <FilterRange v-model="areaRange" :min="AREA_RANGE.MIN" :max="AREA_RANGE.MAX" :step="5" :disabled="isLoading">

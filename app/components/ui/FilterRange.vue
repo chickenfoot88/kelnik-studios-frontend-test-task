@@ -1,20 +1,20 @@
 <template>
-  <div class="filter-range">
-    <label class="filter-range-label">
-      <span class="filter-range-label__header">
+  <div class="filter-range-container">
+    <div class="filter-range">
+      <span class="filter-range__header">
         <slot/>
       </span>
-      <div class="filter-range-label__description">
+      <div class="filter-range__description">
         <div>
           <span>от </span>
-          <span class="filter-range-label__value">{{  formattedPriceRange.min }}</span>
+          <span class="filter-range__value">{{  formattedPriceRange.min }}</span>
         </div>
         <div>
           <span> до </span>
-          <span class="filter-range-label__value">{{  formattedPriceRange.max }}</span>
+          <span class="filter-range__value">{{  formattedPriceRange.max }}</span>
         </div>
       </div>
-    </label>
+    </div>
     <Slider
       v-model="localRange"
       :min="min"
@@ -23,6 +23,7 @@
       class="filter-range-slider"
       :tooltips="false"
       :disabled
+      :aria="{ 'aria-label': 'Кнопка управления диапозоном'}"
       @slide="handleSlide"
       @change="handleChange"
     />
@@ -32,7 +33,13 @@
 <script setup lang="ts">
 import { formatter } from '~/utils/formatter'
 
-const { min, max, step, modelValue, disabled = false } = defineProps<{
+const {
+  min,
+  max,
+  step,
+  modelValue,
+  disabled = false,
+} = defineProps<{
   modelValue: [number, number]
   min: number
   max: number
@@ -75,7 +82,7 @@ watch(
 </script>
 
 <style scoped lang="sass">
-.filter-range
+.filter-range-container
   display: grid
   gap: 12px
 
@@ -89,17 +96,17 @@ watch(
     justify-content: space-between
     font-size: 14px
 
-  &-label
+  &
     display: flex
     flex-wrap: wrap
     gap: 8px
     margin-bottom: 8px
 
-  &-label__header
+  &__header
     font-size: rem(14px)
     line-height: rem(20px)
 
-  &-label__description
+  &__description
     color: rgba($color-text-primary, 0.5)
     display: flex
     justify-content: space-between
@@ -107,7 +114,7 @@ watch(
     > div
       flex: 1
 
-  &-label__value
+  &__value
     color: $color-text-primary
     font-weight: 500
 

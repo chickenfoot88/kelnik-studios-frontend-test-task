@@ -12,10 +12,10 @@
         @next-sort="nextSort"
       />
     </section>
-    <aside class="apartments-page-filter-container">
+    <aside class="apartments-page-filter-container" aria-label="Фильтр квартир">
       <ClientOnly>
         <Transition name="fade-in">
-          <ApartmentsFilter v-model="filterParams" :is-loading aria-label="Фильтр квартир" @reset-filter="resetFilter"/>
+          <ApartmentsFilter v-model="filterParams" :is-loading  @reset-filter="resetFilter"/>
         </Transition>
       </ClientOnly>
     </aside>
@@ -32,6 +32,9 @@ import { PRICE_RANGE, AREA_RANGE } from '~/types/apartments-filter.types'
 import { SORT_ORDER } from '~/types/apartment-sort.types'
 import { debounce } from '~/utils/debounce'
 
+useHead({
+  title: 'Квартиры',
+})
 
 const apartmentsStore = useApartmentsStore()
 const initialPageLength = 5
@@ -130,5 +133,5 @@ main
 
 @media (max-width: $bp-lg)
   .apartments-page
-    gap: $space-6
+    gap: $space-5
 </style>

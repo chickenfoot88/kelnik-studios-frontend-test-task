@@ -1,5 +1,5 @@
 <template>
-  <article class="apartment-card" @click="handleClick(apartment.id)">
+  <button class="apartment-card" type="button" @click="handleClick(apartment.id)">
     <div>
       <h3 class="apartment-card-title">{{ apartment.title }}</h3>
       <div class="apartment-card-text-container">
@@ -17,7 +17,7 @@
       :src="`/images/${apartment.imgUrl}`"
       :alt="apartment.imgAlt"
     />
-  </article>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -40,6 +40,8 @@ function handleClick(id: number) {
   justify-content: space-between
   color: $color-text-primary
   padding: $space-7 $space-5
+  background: none
+  border: none
   border-radius: 8px
   border: 1px solid rgba($color-black, 0.1)
   transition: box-shadow $animation-duration ease
@@ -48,6 +50,7 @@ function handleClick(id: number) {
   font-size: rem(14px)
   line-height: rem(20px)
   min-width: 330px
+  width: 100%
 
   &:hover
     box-shadow: 0 4px 4px rgba($color-black, 25%)
@@ -67,6 +70,7 @@ function handleClick(id: number) {
 .apartment-card-title
   font-weight: 500
   margin-bottom: $space-7
+  text-align: left
 
 .apartment-card-area
   line-height: rem(14px)

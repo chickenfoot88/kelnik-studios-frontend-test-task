@@ -5,7 +5,7 @@
       class="scroll-to-top"
       @click="scrollToTop"
     >
-      <ArrowUp/>
+      <ArrowUp aria-hidden="true"/>
     </ButtonRound>
   </Transition>
 </template>
