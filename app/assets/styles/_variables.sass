@@ -1,11 +1,7 @@
-// colors
-$color-white: #ffffff
-$color-black: #000000
-$color-text-primary: #0B1739
-$color-text-secondary: rgba($color-text-primary, 0.5)
-$color-success-primary: #3EB57C
-$color-success-secondary: #95D0A1
-$color-text-success: $color-success-primary
+@use 'sass:color'
+
+@mixin define-color-vars($name, $value)
+  --#{$name}: #{color.channel($value, 'red', $space: rgb)}, #{color.channel($value, 'green', $space: rgb)}, #{color.channel($value, 'blue', $space: rgb)}
 
 // layout
 $bp-sm: 480px
@@ -28,3 +24,16 @@ $space-4: 48px
 $space-5: 24px
 $space-6: 20px
 $space-7: 16px
+
+// colors
+$color-white: #ffffff
+$color-black: #000000
+$color-text-primary: #0B1739
+$color-text-secondary: rgba($color-text-primary, 0.5)
+$color-success-primary: #3EB57C
+$color-success-secondary: #95D0A1
+$color-text-success: $color-success-primary
+
+:root
+  @include define-color-vars('color-success-primary', $color-success-primary)
+  @include define-color-vars('color-text-primary', $color-text-primary)
