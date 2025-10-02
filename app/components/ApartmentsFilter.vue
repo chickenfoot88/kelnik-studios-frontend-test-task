@@ -72,8 +72,7 @@ const activeRoom = computed<IApartmentsQuery['rooms']>(() => modelValue.rooms)
   display: flex
   flex-direction: column
   gap: $space-5
-  width: 400px
-  padding: 40px
+  width: 100%
 
 .apartments-filter-rooms
   display: flex
