@@ -20,6 +20,8 @@ export const useApartmentsStore = defineStore('apartments', () => {
 
   async function getApartments(filterParams: IApartmentsQuery) {
     const { data, total } = await useApartments().fetchApartments(filterParams)
+    console.log(data, total);
+    
     apartmentsList.value = data
     totalApartmentsLength.value = total
   }
