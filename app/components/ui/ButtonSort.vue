@@ -12,10 +12,10 @@
     <span class="button-sort-text">
       <slot/>
     </span>
-    <div class="button-sort-icons">
+    <span class="button-sort-icons">
       <CaretUp class="button-sort-icon button-sort-icon__asc"/>
       <CaretUp class="button-sort-icon button-sort-icon__desc"/>
-    </div>
+    </span>
   </button>
 </template>
 
