@@ -1,7 +1,9 @@
 <template>
-  <div class="apartments-page">
-    <PageHeader class="apartments-page-header">Квартиры</PageHeader>
-    <div class="apartments-page-container">
+  <main class="apartments-page" aria-labelledby="apartments-page-header">
+    <header>
+      <PageHeader id="apartments-page-header" class="apartments-page-header">Квартиры</PageHeader>
+    </header>
+    <section class="apartments-page-container" aria-label="Список и фильтр квартир">
       <ApartmentsTable
         :apartments-list="apartmentsStore.apartmentListComputed"
         :sort-params="sortParams"
@@ -9,9 +11,15 @@
         @next-page="nextPage"
         @next-sort="nextSort"
       />
-      <ApartmentsFilter v-model="filterParams" :is-loading @reset-filter="resetFilter"/>
-    </div>
-  </div>
+      <aside class="apartments-page-filter-container">
+        <ClientOnly>
+          <Transition name="fade-in">
+            <ApartmentsFilter v-model="filterParams" :is-loading aria-label="Фильтр квартир" @reset-filter="resetFilter"/>
+          </Transition>
+        </ClientOnly>
+      </aside>
+    </section>
+  </main>
 </template>
 
 <script setup lang="ts">
