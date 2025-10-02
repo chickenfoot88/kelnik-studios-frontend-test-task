@@ -5,6 +5,7 @@ import type { IApartmentsQuery } from '~/types/apartments-query.types'
 import { formatter } from '~/utils/formatter'
 
 export const useApartmentsStore = defineStore('apartments', () => {
+  const { app } = useRuntimeConfig()
   const apartmentsList = ref<IApartment[]>([])
   const totalApartmentsLength = ref<number>(0)
   
@@ -15,6 +16,7 @@ export const useApartmentsStore = defineStore('apartments', () => {
       ...apartment,
       price: formatter.format(apartment.price),
       area: formatter.format(apartment.area),
+      imageUrl: `${app.baseURL}images/${apartment.imgUrl}`,
     }))
   }
 
