@@ -1,5 +1,5 @@
 <template>
-  <section class="apartments-table">
+  <div class="apartments-table">
     <header class="apartments-table-header">
       <span class="apartments-table-header__label apartments-table-header__image">Планировка</span>
       <span class="apartments-table-header__label apartments-table-header__title">Квартира</span>
@@ -55,7 +55,7 @@
         Загрузить еще
       </ButtonBase>
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
