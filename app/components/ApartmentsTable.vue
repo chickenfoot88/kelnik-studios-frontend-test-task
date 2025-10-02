@@ -161,6 +161,8 @@ const isDesktop = computed(() => width.value > 1440)
   transition: background-color $animation-duration ease-out, box-shadow $animation-duration ease
   cursor: pointer
   width: 100%
+  font-size: rem(16px)
+  text-align: left
 
   &:hover
     background: rgba($color-black, 0.025)
