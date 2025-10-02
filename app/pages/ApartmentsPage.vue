@@ -37,7 +37,7 @@ const apartmentsStore = useApartmentsStore()
 const initialPageLength = 5
 const filterParamsInitial:IApartmentsQuery = {
   limit: initialPageLength,
-  sortBy: 'area',
+  sortBy: '',
   sortOrder: SORT_ORDER.ASC,
   priceMin: PRICE_RANGE.MIN,
   priceMax: PRICE_RANGE.MAX,
@@ -45,6 +45,7 @@ const filterParamsInitial:IApartmentsQuery = {
   areaMax: AREA_RANGE.MAX,
   rooms: null,
 }
+const STORAGE_KEY = 'FILTER_PARAMS'
 
 const filterParams = ref<IApartmentsQuery>(filterParamsInitial)
 
@@ -80,15 +81,31 @@ const debouncedFetch = debounce(runFetch, 500)
 
 function resetFilter() {
   filterParams.value = { ...filterParamsInitial }
+  localStorage.removeItem(STORAGE_KEY)
+}
+
+function saveFilterParams() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(filterParams.value))
+}
+
+function loadFilterPrarms() {
+  const storedFilterParams = localStorage.getItem(STORAGE_KEY)
+  if (storedFilterParams) {
+    filterParams.value = JSON.parse(storedFilterParams)
+  }
 }
 
 onMounted(() => {
+  loadFilterPrarms()
   runFetch()
 })
 
 watch(
   () => ({ ...filterParams.value }),
   () => {
+    if (import.meta.client) {
+      saveFilterParams()
+    }
     isLoading.value = true
     debouncedFetch()
   },
@@ -106,16 +123,18 @@ watch(
   width: 100%
   gap: $space-2
 
+.apartments-page-filter-container
+  width: 400px
+  margin-left: auto
+
 .apartments-filter
   margin-top: calc(-1* (72px + $space-4))
 
-.apartments-filter
-  margin-left: auto
+main
+  width: 100%
 
-.apartments-filter-mock
-  width: 372px
-  height: 400px
-  background: $color-success-secondary
+aside
+  padding: 0 40px
 
 @media (max-width: $bp-md)
   .apartments-page-container
