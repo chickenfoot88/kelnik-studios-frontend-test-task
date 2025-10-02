@@ -1,0 +1,29 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "NODE_OPTIONS=\"--no-warnings=ExperimentalWarning\" nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint . --ext .ts,.js,.vue",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "@pinia/nuxt": "^0.11.2",
+    "@vueform/slider": "^2.1.10",
+    "@vueuse/core": "^13.9.0",
+    "eslint": "^9.36.0",
+    "nuxt": "^4.1.2",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.21",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "sass-embedded": "^1.93.2"
+  }
+}

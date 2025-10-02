@@ -1,0 +1,35 @@
+@use './variables' as *
+
+// fade-up
+.fade-up-leave-active
+  transition: all calc($animation-duration * 1.5) ease-in
+
+.fade-up-enter-active
+  transition: all calc($animation-duration * 2.2) ease-in 0.3s
+
+.fade-up-enter-from
+  opacity: 0
+  transform: translateY(20px)
+
+.fade-up-enter-to,
+.fade-up-leave-from
+  opacity: 1
+
+.fade-up-leave-to
+  transform: translateY(10px)
+  opacity: 0
+
+// fade-in
+.fade-in-enter-active,
+.fade-in-leave-active
+  transition: opacity calc($animation-duration * 3) ease-out
+
+.fade-in-enter-from,
+.fade-in-leave-to
+  opacity: 0
+
+@keyframes spinner-rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)

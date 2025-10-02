@@ -1,0 +1,19 @@
+@use './_variables' as *
+
+@function rem($px)
+  @return calc($px / $base-font-size) * 1rem
+
+@mixin spinner($size: 16px, $border: 2px, $color: $color-black)
+  display: inline-block
+  width: $size
+  height: $size
+  border-radius: 50%
+  border: $border solid rgba($color, 0.5)
+  border-top-color: $color-white
+  animation: spinner-rotate 1s linear infinite
+
+.spinner
+  @include spinner()
+
+.spinner-lg
+  @include spinner(80px, 4px)

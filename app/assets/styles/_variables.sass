@@ -1,0 +1,39 @@
+@use 'sass:color'
+
+@mixin define-color-vars($name, $value)
+  --#{$name}: #{color.channel($value, 'red', $space: rgb)}, #{color.channel($value, 'green', $space: rgb)}, #{color.channel($value, 'blue', $space: rgb)}
+
+// layout
+$bp-sm: 480px
+$bp-md: 960px
+$bp-lg: 1440px
+
+// font
+$font-stack-base: 'PTRootUI', system-ui, sans-serif
+$base-font-size: 16px
+$font-header-size: 54px
+
+// animation
+$animation-duration: 200ms
+
+// spacing
+$space-1: 96px
+$space-2: 80px
+$space-3: 54px
+$space-4: 48px
+$space-5: 24px
+$space-6: 20px
+$space-7: 16px
+
+// colors
+$color-white: #ffffff
+$color-black: #000000
+$color-text-primary: #0B1739
+$color-text-secondary: rgba($color-text-primary, 0.5)
+$color-success-primary: #3EB57C
+$color-success-secondary: #95D0A1
+$color-text-success: $color-success-primary
+
+:root
+  @include define-color-vars('color-success-primary', $color-success-primary)
+  @include define-color-vars('color-text-primary', $color-text-primary)
