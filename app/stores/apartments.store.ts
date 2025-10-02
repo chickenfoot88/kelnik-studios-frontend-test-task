@@ -16,7 +16,7 @@ export const useApartmentsStore = defineStore('apartments', () => {
       ...apartment,
       price: formatter.format(apartment.price),
       area: formatter.format(apartment.area),
-      imageUrl: `${app.baseURL}images/${apartment.imgUrl}`,
+      imgUrl: `${app.baseURL}images/${apartment.imgUrl}`,
     }))
   }
 
