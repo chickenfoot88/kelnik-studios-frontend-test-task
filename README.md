@@ -2,6 +2,15 @@
 
 Тестовое задание на frontend разработчика от ООО Кельник Студиос
 
-## Технологии
+## Используемый стек
 
-Nuxt 4
+- Nuxt
+- Typescript
+- Pinia
+- SASS
+- VueForm/Slider
+- VueUse/Core
+
+## Дополнительно
+
+- [Требования](Requirements.md)
