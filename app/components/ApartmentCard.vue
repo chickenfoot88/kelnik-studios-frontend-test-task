@@ -14,7 +14,7 @@
     </div>
     <img
       class="apartment-card-image"
-      :src="`/images/${apartment.imgUrl}`"
+      :src="`${apartment.imgUrl}`"
       :alt="apartment.imgAlt"
     />
   </button>

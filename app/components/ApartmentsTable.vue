@@ -30,7 +30,7 @@
             <button v-if="isDesktop" class="apartments-table-card" tabindex="0" type="button">
               <img
               class="apartments-table-card-image"
-              :src="`/images/${apartment.imgUrl}`"
+              :src="`${apartment.imgUrl}`"
               :alt="apartment.imgAlt"
               />
               <h3 class="apartments-table-card-title">{{ apartment.title }}</h3>
