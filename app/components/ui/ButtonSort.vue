@@ -79,7 +79,7 @@ function handleClick() {
 
   &-active
     .button-sort-text
-      color: $color-success-primary
+      color: $color-text-success
 
 .button-sort-active
   &.button-sort-asc
