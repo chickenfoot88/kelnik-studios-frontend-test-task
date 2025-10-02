@@ -1,5 +1,5 @@
 <template>
-    <ButtonRound :class="['button-round-filter', { active: active }]" :disabled="disabled" >
+    <ButtonRound :class="['button-round-filter', { active: active }]" :disabled>
       <slot/>
     </ButtonRound>
 </template>
@@ -17,7 +17,7 @@ const { active = false, disabled = false } = defineProps<{ active?: boolean, dis
 
   &:disabled
     pointer-events: none
-    cursor: default
+    cursor: not-allowed
 
   &.active,
   &:hover
