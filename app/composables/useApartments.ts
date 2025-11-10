@@ -1,14 +1,13 @@
 import type { IApartment } from '~/types/apartments.type'
 import type { IApartmentsQuery } from '~/types/apartments-query.types'
-import { getQuery } from 'h3'
 import { wait } from '~/utils/delay'
 
 
-export function useApartments() {
+export function useApartments(baseUrl: string) {
   const fetchApartments = async function(filterParams: IApartmentsQuery): Promise<{ data: IApartment[], total: number }> {
     // Имитирует задержку ответа от сервера
     await wait(100)
-    const data = await $fetch<IApartment[]>('/mock/apartments.json')
+    const data = await $fetch<IApartment[]>(`${baseUrl}mock/apartments.json`)
 
     const {
       limit,
