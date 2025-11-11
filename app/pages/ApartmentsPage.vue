@@ -88,13 +88,14 @@ function resetFilter() {
 }
 
 function saveFilterParams() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(filterParams.value))
+  const { limit, ...rest } = filterParams.value
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rest))
 }
 
 function loadFilterPrarms() {
   const storedFilterParams = localStorage.getItem(STORAGE_KEY)
   if (storedFilterParams) {
-    filterParams.value = JSON.parse(storedFilterParams)
+    filterParams.value = Object.assign({}, filterParamsInitial, JSON.parse(storedFilterParams))
   }
 }
 
